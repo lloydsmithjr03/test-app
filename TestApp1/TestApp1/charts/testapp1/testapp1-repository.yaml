@@ -1,8 +1,0 @@
-﻿apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: testapp1
-  namespace: tenant1
-spec:
-  interval: 5m
-  url: https://lloydsmithjr03.github.io/testapp

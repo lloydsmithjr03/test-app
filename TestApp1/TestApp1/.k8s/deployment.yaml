@@ -1,0 +1,62 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testapp1    
+  namespace: tenant1
+  labels:
+    app: testapp1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testapp1
+  template:
+    metadata:
+      labels:
+        app: testapp1
+    spec:
+      containers:
+      - image: test/testapp1:local
+        imagePullPolicy: IfNotPresent
+        name: testapp1
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        resources:
+          requests:
+            memory: "460Mi"
+            cpu: "150m"
+          limits:
+            memory: "650Mi"
+            cpu: "300m"
+        env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name                    
+        # envFrom:
+        #   - configMapRef:
+        #       name: tagging-config
+        #   - secretRef:
+        #       name: tagging-secrets      
+        #   - secretRef:
+        #       name: tagging-cluster-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testapp1
+  namespace: testapp1
+  labels:
+    app: testapp1  
+spec:
+  selector:
+    app: testapp1
+  type: ClusterIP
+  ports:
+    - port: 80
+      protocol: TCP
+      name: "80"
+    - port: 443
+      protocol: TCP
+      name: "443"
