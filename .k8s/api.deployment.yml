@@ -5,14 +5,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: testapp.api 
+      app: testapp-api 
   template:
     metadata:
       labels:
-        app: testapp.api 
+        app: testapp-api 
     spec:
       containers:
-      - name: testapp.api
+      - name: testapp-api 
         image: testapp.api:local
         resources:
           limits:
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: testapp.api
+  name: testapp-api 
 spec:
   selector:
-    app: testapp.api
+    app: testapp-api 
   type: ClusterIP
   ports:
   - port: 80

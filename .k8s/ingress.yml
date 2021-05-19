@@ -18,7 +18,7 @@ spec:
         path: /api
         backend:
           service:
-            name: testapp.api
+            name: testapp-api
             port:
               number: 80
       - pathType: Prefix 
@@ -26,14 +26,14 @@ spec:
         path: "/swagger"
         backend:
           service:
-            name: testapp.api
+            name: testapp-api
             port:
               number: 80
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: testapp.ui
+            name: testapp-ui
             port: 
               number: 80
 #---

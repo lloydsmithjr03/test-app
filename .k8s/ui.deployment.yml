@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: testapp.ui
+  name: testapp-ui
 spec:
   selector:
     matchLabels:
-      app: testapp.ui
+      app: testapp-ui
   template:
     metadata:
       labels:
-        app: testapp.ui
+        app: testapp-ui
     spec:
       containers:
-      - name: testapp.ui
-        image: <Image>
+      - name: testapp-ui
+        image: testapp.ui:local
         resources:
           limits:
             memory: "128Mi"
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: testapp.ui
+  name: testapp-ui
 spec:
   selector:
-    app: testapp.ui
+    app: testapp-ui
   type: ClusterIP
   ports:
   - port: 80
