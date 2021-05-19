@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testapp.ui
+spec:
+  selector:
+    matchLabels:
+      app: testapp.ui
+  template:
+    metadata:
+      labels:
+        app: testapp.ui
+    spec:
+      containers:
+      - name: testapp.ui
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testapp.ui
+spec:
+  selector:
+    app: testapp.ui
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    name: "80"
+  - port: 443
+    protocol: TCP
+    name: "443"
