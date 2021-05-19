@@ -46,7 +46,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: testapp1
-  namespace: testapp1
+  namespace: tenant1
   labels:
     app: testapp1  
 spec:
